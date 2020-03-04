@@ -9,6 +9,8 @@ import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Cita;
 
 public interface ICitas {
+	public void comenzar();
+	public void terminar();
 	public List<Cita> get();
 	public List<Cita> get(Sesion sesion);
 	public List<Cita> get(Alumno alumno);
