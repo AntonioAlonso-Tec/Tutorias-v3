@@ -55,7 +55,7 @@ public class Profesores implements IProfesores {
 				salida.writeObject(profesor);
 			System.out.println("Archivo Alumnos escrito satisfactoriamente");
 		} catch (FileNotFoundException e) {
-			System.out.println("No se pudo crear el archivo Alumnos");
+			System.out.println("No se pudo crear el archivo Profesores");
 		} catch (IOException e) {
 			System.out.println("rror de entrada/salida del archivo");
 		}

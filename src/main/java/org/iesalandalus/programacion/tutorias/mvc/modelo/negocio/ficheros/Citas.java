@@ -57,7 +57,7 @@ public class Citas implements ICitas{
 				salida.writeObject(cita);
 			System.out.println("Archivo Alumnos escrito satisfactoriamente");
 		} catch (FileNotFoundException e) {
-			System.out.println("No se pudo crear el archivo Alumnos");
+			System.out.println("No se pudo crear el archivo Citas");
 		} catch (IOException e) {
 			System.out.println("rror de entrada/salida del archivo");
 		}
