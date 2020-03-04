@@ -23,6 +23,22 @@ public class Modelo  implements IModelo{
 		citas=fuenteDatos.crearCitas();
 	}
 
+	public void comenzar() {
+		alumnos.comenzar();
+		profesores.comenzar();
+		citas.comenzar();
+		sesiones.comenzar();
+		tutorias.comenzar();
+	}
+	
+	public void terminar() {
+		alumnos.terminar();
+		profesores.terminar();
+		citas.terminar();
+		sesiones.terminar();
+		tutorias.terminar();
+	}
+	
 	public void insertar(Alumno alumno) throws OperationNotSupportedException {
 		alumnos.insertar(alumno);
 	}
