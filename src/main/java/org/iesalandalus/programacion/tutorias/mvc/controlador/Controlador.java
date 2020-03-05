@@ -26,10 +26,12 @@ public class Controlador implements IControlador {
 	}
 
 	public void comenzar() {
+		modelo.comenzar();
 		vista.comenzar();
 	}
 
 	public void terminar() {
+		modelo.terminar();
 		System.out.println("Hasta luego GaaaaaaaaÑAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN");
 	}
 

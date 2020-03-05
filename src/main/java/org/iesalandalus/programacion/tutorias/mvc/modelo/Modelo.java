@@ -26,17 +26,21 @@ public class Modelo  implements IModelo{
 	public void comenzar() {
 		alumnos.comenzar();
 		profesores.comenzar();
-		citas.comenzar();
-		sesiones.comenzar();
 		tutorias.comenzar();
+		sesiones.comenzar();
+
+		citas.comenzar();
+
 	}
 	
 	public void terminar() {
 		alumnos.terminar();
 		profesores.terminar();
-		citas.terminar();
-		sesiones.terminar();
 		tutorias.terminar();
+		sesiones.terminar();
+
+		citas.terminar();
+
 	}
 	
 	public void insertar(Alumno alumno) throws OperationNotSupportedException {
