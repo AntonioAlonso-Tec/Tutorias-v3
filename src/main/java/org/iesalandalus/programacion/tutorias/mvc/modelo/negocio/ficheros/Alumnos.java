@@ -19,43 +19,73 @@ import java.util.List;
 
 public class Alumnos implements IAlumnos {
 	private List<Alumno> coleccionAlumnos;
-	public static final String NOMBRE_FICHERO_ALUMNOS="datos/alumnos.dat";
+	public static final String NOMBRE_FICHERO_ALUMNOS = "datos/alumnos.dat";
 
 	public Alumnos() {
 		coleccionAlumnos = new ArrayList<>();
 	}
-	
+
 	public void comenzar() {
-		File ficheroAlumnos=new File(NOMBRE_FICHERO_ALUMNOS);
-		try(ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(ficheroAlumnos))){
-			Alumno alumno=null;
+		File ficheroAlumnos = new File(NOMBRE_FICHERO_ALUMNOS);
+		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(ficheroAlumnos))) {
+			Alumno alumno = null;
+			String numExpedienteString = "";
+			String numExpStringAnterior = "";
+			int numExpediente = 0;
+			int numExpedienteAnterior = 0;
 			do {
-				alumno=(Alumno) entrada.readObject();
+				alumno = (Alumno) entrada.readObject();
 				insertar(alumno);
-			}while(alumno!=null);
-		}catch(ClassNotFoundException e) {
+				if (alumno != null) {
+					for (int i = 0; i < alumno.getExpediente().length(); i++) {
+						if (Character.isDigit(alumno.getExpediente().charAt(i))) {
+							numExpedienteString += alumno.getExpediente().charAt(i);
+						}
+					}
+					numExpediente = Integer.parseInt(numExpedienteString);
+					if (coleccionAlumnos.get(coleccionAlumnos.size() - 1) != null) {
+						for (int i = 0; i < coleccionAlumnos.size() - 1; i++) {
+							if (Character.isDigit(alumno.getExpediente().charAt(i))) {
+								numExpStringAnterior += alumno.getExpediente().charAt(i);
+							}
+						}
+						numExpedienteAnterior = Integer.parseInt(numExpStringAnterior);
+					}
+					if (numExpediente > numExpedienteAnterior) {
+						Alumno.modificaIdentificador(numExpediente);
+					} else {
+						numExpediente = numExpedienteAnterior + 1;
+						Alumno.modificaIdentificador(numExpediente);
+					}
+				}
+
+				// if(alumno!=null) {
+				// alumno.comprobarModificador();
+				// }
+			} while (alumno != null);
+		} catch (ClassNotFoundException e) {
 			System.out.println("ERROR: No se encuentra la clase");
-		}catch(FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: No se encuentra el archivo");
-		}catch(EOFException e) {
+		} catch (EOFException e) {
 			System.out.println("Archivo leído satisfactoriamente");
-		}catch(IOException e) {
+		} catch (IOException e) {
 			System.out.println("Error de entrada/salida del archivo");
-		}catch(OperationNotSupportedException e) {
+		} catch (OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public void terminar() {
-		File ficheroAlumnos=new File(NOMBRE_FICHERO_ALUMNOS);
-		try(ObjectOutputStream salida=new ObjectOutputStream(new FileOutputStream(ficheroAlumnos))){
-			for(Alumno alumno:coleccionAlumnos)
+		File ficheroAlumnos = new File(NOMBRE_FICHERO_ALUMNOS);
+		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(ficheroAlumnos))) {
+			for (Alumno alumno : coleccionAlumnos)
 				salida.writeObject(alumno);
 			System.out.println("Archivo Alumnos escrito satisfactoriamente");
 		} catch (FileNotFoundException e) {
 			System.out.println("No se pudo crear el archivo Alumnos");
 		} catch (IOException e) {
-			System.out.println("rror de entrada/salida del archivo");
+			System.out.println("Error de entrada/salida del archivo");
 		}
 	}
 

@@ -29,7 +29,7 @@ public class Consola {
 	public static int elegirOpcion() {
 		int opcion;
 		do {
-			System.out.print("\nEscoge una opción");
+			System.out.print("\nEscoge una opción: ");
 			opcion = Entrada.entero();
 
 		} while (!Opcion.esOrdinalValido(opcion));

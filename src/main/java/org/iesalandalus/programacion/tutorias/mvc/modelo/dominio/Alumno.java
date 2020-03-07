@@ -3,6 +3,8 @@ package org.iesalandalus.programacion.tutorias.mvc.modelo.dominio;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.iesalandalus.programacion.tutorias.mvc.modelo.negocio.ficheros.Alumnos;
+
 public class Alumno implements Serializable {
 	private static final String ER_NOMBRE = "([A-Zu00C0-\\u017F]{1}[a-zu00C0-\\u017F]+ )+([A-Zu00C0-\\u017F]{1}[a-zu00C0-\\u017F]+)";
 	private static final String PREFIJO_EXPEDIENTE = "SP_";
@@ -104,8 +106,7 @@ public class Alumno implements Serializable {
 		if (ultimoIdentificador < 1) {
 			throw new IllegalArgumentException("ERROR: No puede existir menos de 1 alumno");
 		} else {
-
-			this.expediente = PREFIJO_EXPEDIENTE + getIniciales() + "_" + ultimoIdentificador;
+			expediente = PREFIJO_EXPEDIENTE + getIniciales() + "_" + ultimoIdentificador;
 		}
 	}
 
@@ -130,6 +131,10 @@ public class Alumno implements Serializable {
 	private static void incrementaUltimoModificador() {
 		ultimoIdentificador++;
 	}
+	
+	public static void modificaIdentificador(int nuevoIdentificador) {
+		ultimoIdentificador=nuevoIdentificador;
+	}
 
 	@Override
 	public int hashCode() {
@@ -150,7 +155,7 @@ public class Alumno implements Serializable {
 
 	@Override
 	public String toString() {
-		return "nombre=" + nombre + " (" + getIniciales() + ")" + ", correo=" + correo + ", expediente=" + expediente;
+		return "nombre=" + nombre + " (" + getIniciales() + ")" + ", correo=" + correo + ", expediente=" + getExpediente();
 	}
 
 }

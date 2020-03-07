@@ -20,7 +20,6 @@ import org.iesalandalus.programacion.tutorias.mvc.modelo.dominio.Tutoria;
 import org.iesalandalus.programacion.tutorias.mvc.modelo.negocio.ISesiones;
 
 public class Sesiones implements ISesiones {
-
 	private List<Sesion> coleccionSesiones;
 	public static final String NOMBRE_FICHERO_SESIONES="datos/sesiones.dat";
 	public Sesiones() {
@@ -58,7 +57,7 @@ public class Sesiones implements ISesiones {
 		} catch (FileNotFoundException e) {
 			System.out.println("No se pudo crear el archivo Sesiones");
 		} catch (IOException e) {
-			System.out.println("rror de entrada/salida del archivo");
+			System.out.println("Error de entrada/salida del archivo");
 		}
 	}
 
